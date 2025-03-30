@@ -8,7 +8,9 @@ SISR-GAN/
 │── data/                     # Thư mục chứa dữ liệu ảnh
 │   ├── train/                # Ảnh huấn luyện
 │   ├── test/                 # Ảnh kiểm tra
-|── |notebooks/               # Chứa các notebooks thử nghiệm
+|── notebooks/                # Chứa các notebooks thử nghiệm
+│   ├── generator.ipynb
+│   ├── discriminator.ipynb
 │── models/                   # Chứa các mô hình GAN
 │   ├── generator.py          # Mô hình Generator
 │   ├── discriminator.py      # Mô hình Discriminator
