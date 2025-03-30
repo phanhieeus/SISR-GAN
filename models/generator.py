@@ -7,7 +7,7 @@ class ResidualBlock(nn.Module):
         self.residual = nn.Sequential(
             nn.Conv2d(64, 64, kernel_size=3, stride=1, padding=1),
             nn.BatchNorm2d(64),
-            nn.PReLU(inplace=True),
+            nn.PReLU(),
             nn.Conv2d(64, 64, kernel_size=3, stride=1, padding=1),
             nn.BatchNorm2d(64)
         )
@@ -19,7 +19,7 @@ class Generator(nn.Module):
         
         super().__init__()
         self.conv1 = nn.Conv2d(3, 64, kernel_size=9, stride=1, padding=4)
-        self.prelu = nn.PReLU(inplace=True)
+        self.prelu = nn.PReLU()
         self.res_blocks = nn.Sequential(*[ResidualBlock() for _ in range(BLOCK)])
         self.conv2 = nn.Conv2d(64, 64, kernel_size=3, stride=1, padding=1)
         self.bn = nn.BatchNorm2d(64)
