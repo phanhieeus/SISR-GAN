@@ -1,25 +1,17 @@
 import torch
 import torch.nn as nn
 from torchvision import models
+from VGGExtractor import VGGExtractor
 
 
 
 class ContentLoss(nn.Module):
 
-    class VGGExtractor(nn.Module):
-        def __init__(self, layers):
-            super().__init__()
-            vgg19 = models.vgg19(pretrained=True).features
-            self.feature_extractor = nn.Sequential(*list(vgg19.children())[:layers])
-            for param in self.feature_extractor.parameters():
-                param.requires_grad = False
-        def forward(self, x):
-            return self.feature_extractor(x)
-
     def __init__(self, layers=9):
         super().__init__()
-        self.vgg_extractor = self.VGGExtractor(layers).eval()
+        self.vgg_extractor = VGGExtractor(layers).eval()
         self.criterion = nn.MSELoss()
+        
     def forward(self, sr, hr):
         sr_features = self.vgg_extractor(sr)
         hr_features = self.vgg_extractor(hr)
